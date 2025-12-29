@@ -22,7 +22,7 @@ type ShardKV struct {
 	make_end     func(string) *labrpc.ClientEnd
 	gid          int
 	ctrlers      []*labrpc.ClientEnd
-	maxraftstate int // snapshot if log grows this big
+	maxraftstate int // log size threshold
 
 	// Your definitions here.
 }
@@ -52,14 +52,6 @@ func (kv *ShardKV) Kill() {
 // servers[] contains the ports of the servers in this group.
 //
 // me is the index of the current server in servers[].
-//
-// the k/v server should store snapshots through the underlying Raft
-// implementation, which should call persister.SaveStateAndSnapshot() to
-// atomically save the Raft state along with the snapshot.
-//
-// the k/v server should snapshot when Raft's saved state exceeds
-// maxraftstate bytes, in order to allow Raft to garbage-collect its
-// log. if maxraftstate is -1, you don't need to snapshot.
 //
 // gid is this group's GID, for interacting with the shardctrler.
 //

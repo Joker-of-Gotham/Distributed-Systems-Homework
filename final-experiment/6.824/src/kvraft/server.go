@@ -42,7 +42,7 @@ type KVServer struct {
 	applyCh chan raft.ApplyMsg
 	dead    int32 // set by Kill()
 
-	maxraftstate int // snapshot if log grows this big
+	maxraftstate int // log size threshold
 
 	// Key-value store
 	kvStore map[string]string
